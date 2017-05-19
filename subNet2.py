@@ -16,11 +16,12 @@ features.
 import json
 import random
 import sys
-import umsgpack
+
 
 # Third-party libraries
 import numpy as np
-
+#import umsgpack
+import json
 
 #### Define the quadratic and cross-entropy cost functions
 
@@ -192,7 +193,7 @@ class Network(object):
             if monitor_training_accuracy:
                 tAccuracy = self.accuracy(training_data, convert=True)
                 training_accuracy.append(tAccuracy)
-                #print("Accuracy on training data: {} / {}".format(tAccuracy, n))
+                print("Accuracy on training data: {} / {}".format(tAccuracy, n))
             if monitor_evaluation_cost:
                 cost = self.total_cost(evaluation_data, lmbda, convert=True)
                 evaluation_cost.append(cost)
@@ -200,7 +201,7 @@ class Network(object):
             if monitor_evaluation_accuracy:
                 eAccuracy = self.accuracy(evaluation_data)
                 evaluation_accuracy.append(eAccuracy)
-                #print("Accuracy on evaluation data: {} / {}".format(self.accuracy(evaluation_data), n_data))
+                print("Accuracy on evaluation data: {} / {}".format(self.accuracy(evaluation_data), n_data))
 
             # check and save for best performing parameters
             if eAccuracy > best_accuracy:
@@ -380,6 +381,7 @@ def vectorized_result(j):
 def sigmoid(z):
     """The sigmoid function."""
     return 1.0/(1.0+np.exp(-z))
+    #return 1.0 / (1.0+np.e**(-z))
 
 def sigmoid_prime(z):
     """Derivative of the sigmoid function."""
