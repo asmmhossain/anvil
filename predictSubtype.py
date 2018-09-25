@@ -129,7 +129,7 @@ def loadNetworks(paramDir):
     '''
 
     # get the names of the subtypes present in the parameter directory
-    forward_param_files = sorted([f for f in os.listdir(paramDir) if f.endswith('.forward.param')])
+    forward_param_files = sorted([f for f in os.listdir(paramDir) if f.endswith('.param')])
 
     # check parameter files are in pairs
     forward_subtypes = [pf.split('.')[0] for pf in forward_param_files]
@@ -141,7 +141,7 @@ def loadNetworks(paramDir):
     forwardNetworks = dict()
 
     for stp in subtypes:
-        sfName = os.path.join(paramDir, stp.upper() + '.forward.param')
+        sfName = os.path.join(paramDir, stp.upper() + '.param')
         if os.path.exists(sfName) and os.stat(sfName).st_size != 0:
             tNet = subnet.load(sfName)
             forwardNetworks[stp] = tNet
